@@ -1,4 +1,5 @@
 import re
+import random
 alfabeto1 = []
 alfabeto2 = []
 
@@ -52,6 +53,42 @@ def letra(x, cadena1):
 		return "El numero de veces que aparece la letra " + str(x) + "es de " + str(cadena1.count(x)) + " veces"
 	else:
 		return "Esa letra no se encuentra en la cadena"
+def palindromo(palabra):
+	aux=palabra[::-1]
+	if palabra==aux:
+		print("W3 al reves es: "+aux+"\nEs un palindromo")
+	else:
+		print("W3 al reves es: "+aux+"\nNo es un palindromo")
+def elevaralf(n,alfabeto,base):
+    if n==0:
+        print("")
+        return
+    if n>1:
+        for palabra in alfabeto:
+            elevaralf((n-1),alfabeto,palabra +str(base))
+    
+    else:
+        for palabra in alfabeto:
+            print(base + str(palabra),end=",")
+def palabrasal(num1,num2,num3,num4,num5,num6):
+	print("Para Σ1")
+	for num1 in range(0,num1):
+		print(random.choice(alfabeto1),end="")
+	print()
+	for num2 in range(0,num2):
+		print(random.choice(alfabeto1),end="")
+	print()
+	for num3 in range(0,num3):
+		print(random.choice(alfabeto1),end="")
+	print("\n\nPara Σ2")
+	for num4 in range(0,num4):
+		print(random.choice(alfabeto2),end="")
+	print()
+	for num5 in range(0,num5):
+		print(random.choice(alfabeto2),end="")
+	print()
+	for num6 in range(0,num6):
+		print(random.choice(alfabeto2),end="")
 #(a)
 print("Ingresa el alfabeto Σ1:\n")
 alf(alfabeto1)
@@ -80,3 +117,27 @@ while True:
 	print("Para |w1|x elija un simbolo para x")
 	x = input()
 	print(letra(x, cadena1))
+	break
+#(g)
+cadena3=input("Escribir W3: ")
+palindromo(cadena3)
+#(h)
+print("Para Σ1^n elija un exponente entero positivo mayor a 0")
+while True:
+    potencia = input("Ingresar el valor de n: ")
+    try:
+        potencia=int(potencia)
+        if potencia > 0:
+            break
+    except ValueError:
+        print("Entrada incorrecta")
+elevaralf(potencia,alfabeto1,"")
+#(i)
+print("\nGenerando 3 palabras aleatorias")
+num1=int(input("Caracteres palabra 1 de Σ1: "))
+num2=int(input("Caracteres palabra 2 de Σ1: "))
+num3=int(input("Caracteres palabra 3 de Σ1: "))
+num4=int(input("Caracteres palabra 1 de Σ2: "))
+num5=int(input("Caracteres palabra 2 de Σ2: "))
+num6=int(input("Caracteres palabra 3 de Σ2: "))
+palabrasal(num1,num2,num3,num4,num5,num6)

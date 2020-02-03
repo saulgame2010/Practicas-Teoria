@@ -5,22 +5,22 @@ alfabeto2 = []
 
 def alf(alfa):	
 	while True:
-		print("Como quieres ingresar tu alfabeto?\n1.-Por extension\n2.-Por rango")
-		op = input()
+		print("¿Como quieres ingresar tu alfabeto?\n1.-Por extension\n2.-Por rango")
+		op = input("Seleccion: ")
 		if(op == "1"):
-			print("De cuantos elementos va a ser? (debe tener al menos 3 elementos)\n")
+			print("De cuantos elementos va a ser? (debe tener al menos 3 elementos): ",end="")
 			numE = int(input())
 			if(numE < 3):
 				print("Deben ser al menos 3 elementos\n")			
 			else:
 				for x in range(0, int(numE)):
-					print("Simbolo #", str(x + 1), ": ")
+					print("Simbolo #", str(x + 1), ": ",end=" ")
 					alfa.append(input())
 				print("El alfabeto contiene los siguientes simbolos: " + str(alfa) + "\n")
 				break
 		elif(op == "2"):
-			char1 = input("Ingresa el primer elemento\n")
-			char2 = input("Ingresa el ultimo elemento\n")
+			char1 = input("Ingresa el primer elemento: ")
+			char2 = input("Ingresa el ultimo elemento: ")
 			if (ord(char1) > ord(char2)):
 				print("El orden en que ingresaste los elementos es invalido\n")
 			elif((ord(char2)-ord(char1)) < 2):
@@ -50,9 +50,21 @@ def elevar_cadena(n, cadena1, cadena2):
 		return cadena3
 def letra(x, cadena1):
 	if(x in cadena1):
-		return "El numero de veces que aparece la letra " + str(x) + "es de " + str(cadena1.count(x)) + " veces"
+		return "El numero de veces que aparece la letra " + str(x) + " es de " + str(cadena1.count(x)) + " veces"
 	else:
 		return "Esa letra no se encuentra en la cadena"
+def comparar(cadena1,cadena2):
+	if cadena1 in cadena2:
+		if cadena1==cadena2:
+			print(str(cadena1)," es subcadena de ",str(cadena2))
+		else:
+			print(str(cadena1)," es subcadena propia de ",str(cadena2))
+	elif cadena2 in cadena1:
+		if cadena2==cadena1:
+			print(str(cadena2)," es subcadena de ",str(cadena1))
+		else:
+			print(str(cadena2)," es subcadena propia de ",str(cadena1))
+
 def palindromo(palabra):
 	aux=palabra[::-1]
 	if palabra==aux:
@@ -90,10 +102,10 @@ def palabrasal(num1,num2,num3,num4,num5,num6):
 	for num6 in range(0,num6):
 		print(random.choice(alfabeto2),end="")
 #(a)
-print("Ingresa el alfabeto Σ1:\n")
+print("\tIngresa el alfabeto Σ1:")
 alf(alfabeto1)
 #(b)
-print("Ingresa el alfabeto Σ2\n")
+print("\tIngresa el alfabeto Σ2")
 alf(alfabeto2)		
 #(c)
 while True:
@@ -103,26 +115,29 @@ while True:
 	else:
 		print("La cadena es invalida")
 while True:		
-	cadena2 = input("Ingresa la cadena w2 con caracteres calidos para el alfabeto Σ1\n")
+	cadena2 = input("\nIngresa la cadena w2 con caracteres validos para el alfabeto Σ1\n")
 	if(leer_cadena(alfabeto1, cadena2)):
 		break
 	else:
 		print("La cadena es invalida")
 #(d)
-print("Para (w1w2)^n elija un exponente entero positivo o negativo para n")
+print("\nPara (w1w2)^n elija un exponente entero positivo o negativo para n")
 n = int(input())
 print(elevar_cadena(n, cadena1, cadena2))
 #(e)
 while True:	
-	print("Para |w1|x elija un simbolo para x")
+	print("\nPara |w1|x elija un simbolo para x")
 	x = input()
 	print(letra(x, cadena1))
 	break
+#(f)
+print("\nComparacion de w1 y w2")
+comparar(cadena1,cadena2)
 #(g)
-cadena3=input("Escribir W3: ")
+cadena3=input("\nEscribir W3: ")
 palindromo(cadena3)
 #(h)
-print("Para Σ1^n elija un exponente entero positivo mayor a 0")
+print("\nPara Σ1^n elija un exponente entero positivo mayor a 0")
 while True:
     potencia = input("Ingresar el valor de n: ")
     try:
@@ -133,7 +148,7 @@ while True:
         print("Entrada incorrecta")
 elevaralf(potencia,alfabeto1,"")
 #(i)
-print("\nGenerando 3 palabras aleatorias")
+print("\n\nGenerando 3 palabras aleatorias")
 num1=int(input("Caracteres palabra 1 de Σ1: "))
 num2=int(input("Caracteres palabra 2 de Σ1: "))
 num3=int(input("Caracteres palabra 3 de Σ1: "))

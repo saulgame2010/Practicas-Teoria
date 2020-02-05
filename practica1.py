@@ -30,15 +30,16 @@ def alf(alfa):
 					alfa.append(chr(x)) 
 				print("El alfabeto contiene los siguientes simbolos: " + str(alfa) + "\n")
 				break
-def leer_cadena(alfabeto, cadena):
-	cont = 0
-	for x in alfabeto:		
-		if(str(x) in str(cadena)):			
-			cont = cont + cadena.count(x)	
-	if cont == len(cadena):
+
+def leer_cadena(alfabeto, cadena):	
+	for x in alfabeto:
+		if(x in cadena):
+			cadena = cadena.replace(x, "", 1)
+	if(cadena == ""):
 		return True
-	else: 
+	else:		
 		return False
+
 
 def elevar_cadena(n, cadena1, cadena2):
 	if n == 0:

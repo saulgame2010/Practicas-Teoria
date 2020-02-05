@@ -55,15 +55,22 @@ def letra(x, cadena1):
 		return "Esa letra no se encuentra en la cadena"
 def comparar(cadena1,cadena2):
 	if cadena1 in cadena2:
-		if cadena1==cadena2:
-			print(str(cadena1)," es subcadena de ",str(cadena2))
+		if cadena1==cadena2 or cadena1=="":
+			print(cadena1,"es un prefijo, sufijo y subcadena de",cadena2)
+		elif cadena2.startswith(cadena1):
+			print(cadena1,"es prefijo propio de",cadena2)
+		elif cadena2.endswith(cadena1):
+			print(cadena1,"es un sufijo de",cadena2)
+		if cadena1 in cadena2 and cadena1!="" and cadena1!=cadena2:
+			print(cadena1,"es subcadena propia de",cadena2)
+	else:
+		verificar=[]
+		for leer in cadena1:
+			verificar.append(cadena2.find(leer))
+		if -1 in verificar:
+			print(cadena1,"no es subsecuencia",cadena2)
 		else:
-			print(str(cadena1)," es subcadena propia de ",str(cadena2))
-	elif cadena2 in cadena1:
-		if cadena2==cadena1:
-			print(str(cadena2)," es subcadena de ",str(cadena1))
-		else:
-			print(str(cadena2)," es subcadena propia de ",str(cadena1))
+			print(cadena1,"es subsecuencia",cadena2)
 
 def palindromo(palabra):
 	aux=palabra[::-1]

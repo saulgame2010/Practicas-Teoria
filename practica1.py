@@ -13,16 +13,23 @@ def alf(alfa):
 			if(numE < 3):
 				print("Deben ser al menos 3 elementos\n")			
 			else:
+				#Lo que hace la función range es es crear una secuencia de números
+				#lo hace con los argumentos que recibe, que son (numero de partida, numero hasta donde llegará la secuencia)
 				for x in range(0, int(numE)):
-					print("Simbolo #", str(x + 1), ": ",end=" ")
+					print("Simbolo #", str(x + 1), ": ",end=" ")					
 					alfa.append(input())
 				print("El alfabeto contiene los siguientes simbolos: " + str(alfa) + "\n")
 				break
 		elif(op == "2"):
 			char1 = input("Ingresa el primer elemento: ")
 			char2 = input("Ingresa el ultimo elemento: ")
+			#ord() devuelve el unicode del caracter que tenga en su argumento
+			#Aquí se verifica que el unicode del primer elemento no sea mayor
+			#al del segundo para evitar ingresar un alfabeto no ordenado de forma ascendente
 			if (ord(char1) > ord(char2)):
 				print("El orden en que ingresaste los elementos es invalido\n")
+			#En esta línea hacemos una resta del unicode del primer y segundo elemento para verificar
+			#que se estén ingresando 3 o más elementos	
 			elif((ord(char2)-ord(char1)) < 2):
 				print("El alfabeto debe tener al menos 3 simbolos")			
 			else:
@@ -32,7 +39,12 @@ def alf(alfa):
 				break
 
 def leer_cadena(alfabeto, cadena):	
+	#En este ciclo for, x va a tomar como valor todos los elementos del alfabeto
 	for x in alfabeto:
+		#Aqui se revisa que x esté en la cadena
+		#si es así, se va a reemplazar ese caracter por un caracter cualquiera
+		#los argumetos de la funcion replace son: el caracter a sustituir, el caracter sustituto y 
+		#el numero de veces que se va a reemplazar (este último argumento es opcional)
 		if(x in cadena):
 			cadena = cadena.replace(x, "", 1)
 	if(cadena == ""):
@@ -44,12 +56,14 @@ def leer_cadena(alfabeto, cadena):
 def elevar_cadena(n, cadena1, cadena2):
 	if n == 0:
 		return ""
-	cadena3 = (cadena1+cadena2)*(abs(n))
+	#La funcion abs nos devuelve el valor absoluto del numero que tiene como parámetro	
+	cadena3 = (cadena1+cadena2)*(abs(n))	
 	if n < 0:
 		return cadena3[::-1]	
 	else:
 		return cadena3
 def letra(x, cadena1):
+	#La funcion count() nos devuelve el numero de veces que aparece un caracter o una palabra en una cadena 
 	if(x in cadena1):
 		return "El numero de veces que aparece la letra " + str(x) + " es de " + str(cadena1.count(x)) + " veces"
 	else:

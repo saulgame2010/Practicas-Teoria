@@ -3,7 +3,7 @@ import random
 alfabeto1 = []
 alfabeto2 = []
 
-def alf(alfa):	
+def alf(alfa):
 	while True:
 		print("¿Como quieres ingresar tu alfabeto?\n1.-Por extension\n2.-Por rango")
 		op = input("Seleccion: ")
@@ -46,7 +46,7 @@ def leer_cadena(alfabeto, cadena):
 		#los argumetos de la funcion replace son: el caracter a sustituir, el caracter sustituto y 
 		#el numero de veces que se va a reemplazar (este último argumento es opcional)
 		if(x in cadena):
-			cadena = cadena.replace(x, "", 1)
+			cadena = cadena.replace(x, "")
 	if(cadena == ""):
 		return True
 	else:		

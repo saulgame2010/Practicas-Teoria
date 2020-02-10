@@ -13,8 +13,8 @@ public class Ventana extends JFrame implements ActionListener{
 	JButton registrar;
 	ConexionBD conexion;
 	Connection con;
-	Pattern pCorreo;
-	Matcher mCorreo;
+	Pattern pCorreo, pCurp;
+	Matcher mCorreo, mCurp;
 	String usuario, pass, correo, curp;
 
 	public Ventana() {

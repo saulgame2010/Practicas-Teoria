@@ -10,7 +10,7 @@ import java.util.regex.*;
 
 public class Ventana extends JFrame implements ActionListener {
 
-    Icon insertar, error, no_valido;
+    Icon insertar, error,at,contraseña,id;
     JLabel jUsuario, jPass, jCorreo, jCurp, fondo;
     JTextField tUsuario, tPass, tCorreo, tCurp;
     JButton registrar;
@@ -91,7 +91,12 @@ public class Ventana extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        insertar = new ImageIcon("src/img/add.png");
+        error = new ImageIcon("src/img/error.png");
+        at=new ImageIcon("src/img/at.png");
+        contraseña=new ImageIcon("src/img/pass.png");
+        id=new ImageIcon("src/img/id.png");
+        
         usuario = tUsuario.getText();
         pass = tPass.getText();
         correo = tCorreo.getText();
@@ -99,10 +104,30 @@ public class Ventana extends JFrame implements ActionListener {
         mCorreo = pCorreo.matcher(correo);
         mCurp = pCurp.matcher(curp);
         mPass = pPass.matcher(pass);
-
-        insertar = new ImageIcon("src/img/add.png");
-        error = new ImageIcon("src/img/error.png");
-        no_valido = new ImageIcon("src/img/incorrecto.png");
+        
+        if(mPass.find()==false){
+            JOptionPane.showMessageDialog(null,"Formato de contraseña incorrecto","Atención",
+                    JOptionPane.WARNING_MESSAGE,contraseña);
+            tPass.setText("");   
+        }
+        if(mCorreo.find()==false){
+            JOptionPane.showMessageDialog(null,"Formato de correo incorrecto","Atención",
+                    JOptionPane.WARNING_MESSAGE,at);
+            tCorreo.setText("");
+        }
+        if(mCurp.find()==false){
+            JOptionPane.showMessageDialog(null,"Formato de curp incorrecto","Atención",
+                    JOptionPane.WARNING_MESSAGE,id);
+            tCurp.setText("");
+        }
+        usuario = tUsuario.getText();
+        pass = tPass.getText();
+        correo = tCorreo.getText();
+        curp = tCurp.getText();
+        mCorreo = pCorreo.matcher(correo);
+        mCurp = pCurp.matcher(curp);
+        mPass = pPass.matcher(pass);
+        
 
         String query = "INSERT INTO Usu"
                 + "(usuario, pass, correo, curp) VALUES"
@@ -118,17 +143,15 @@ public class Ventana extends JFrame implements ActionListener {
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Se insertaron los datos", "Verificacion",
                         JOptionPane.WARNING_MESSAGE, insertar);
+                tUsuario.setText("");
+                tCorreo.setText("");
+                tPass.setText("");
+                tCurp.setText("");
             } catch (SQLException s) {
                 JOptionPane.showMessageDialog(null, "Hubo un error " + s, "",
                         JOptionPane.WARNING_MESSAGE, error);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Formato invalido en algún campo", "Error",
-                    JOptionPane.WARNING_MESSAGE, no_valido);
-        }
-        tUsuario.setText("");
-        tPass.setText("");
-        tCorreo.setText("");
-        tCurp.setText("");
+        } 
+        
     }
 }

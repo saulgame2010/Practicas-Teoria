@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class ConexionBD {
     public String bd = "Expresiones";
-	public String url = "jdbc:mysql://localhost:3306/" + bd;
+	public String url = "jdbc:mysql://localhost:3307/" + bd;
 	public String usuario = "root";
 	public String pass = "";
 

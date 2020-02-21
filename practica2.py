@@ -1,5 +1,6 @@
 import random
 from posixpath import join
+import itertools
 
 alfabeto=[]
 lenguaje1=[]
@@ -44,16 +45,51 @@ def defleng(lenguaje):
     lon=int(input("Longitud de los elementos del lenguaje: "))
     for np1 in range(0,nump):
         for lon1 in range(0,lon):
-         palabra.append(random.choice(alfabeto))
-         aux="".join(palabra)
+        	palabra.append(random.choice(alfabeto))
+        	aux="".join(palabra)
         lenguaje.append(aux)
         palabra.clear()
     print("El lenguaje contiene los siguientes elementos: ",str(lenguaje))
+def union_len(leng1,leng2):
+	aux=leng1+leng2
+	resultado=[]
+	for aux2 in aux:
+		if aux2 not in resultado:
+			resultado.append(aux2)
+	print("Lu es: ",str(resultado))
+def concalen(len1,len2):
+	conca = []
+	for aux1 in len1:
+		for aux2 in len2:
+			aux3=aux1+aux2
+			if aux3 not in conca:
+				conca.append(aux3)
+	print("Lc es: ",str(conca))
+def restalen(len1,len2):
+	resta = []
+	resta2 = []
+	for palabra in len1:
+		if palabra not in len2:
+			resta.append(palabra)
+	for palabra in len2:
+		if palabra not in len1:
+			resta2.append(palabra)
+	print("Ld1 es: ",str(resta))
+	print("Ld2 es: ",str(resta2))
 
-#1
+#a
 alf(alfabeto)
-#2
+#b
 print("\t---Lenguaje 1---")
 defleng(lenguaje1)
 print("\n\t---Lenguaje 2---")
 defleng(lenguaje2)
+#c
+print("\n\t---Union de L1 y L2---")
+union_len(lenguaje1,lenguaje2)
+#d
+print("\n\t---Concatenación de L1 y L2---")
+concalen(lenguaje1,lenguaje2)
+#e
+print("\n\t---Diferencia de lenguajes---")
+restalen(lenguaje1,lenguaje2)

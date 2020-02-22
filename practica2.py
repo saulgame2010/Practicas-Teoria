@@ -40,16 +40,19 @@ def alf(alfa):
 				print("El alfabeto contiene los siguientes simbolos: " + str(alfa) + "\n")
 				break
 def defleng(lenguaje):
-    palabra=[]
-    nump=int(input("Cuantos elementos tendra el lenguaje: "))
-    lon=int(input("Longitud de los elementos del lenguaje: "))
-    for np1 in range(0,nump):
-        for lon1 in range(0,lon):
-        	palabra.append(random.choice(alfabeto))
-        	aux="".join(palabra)
-        lenguaje.append(aux)
-        palabra.clear()
-    print("El lenguaje contiene los siguientes elementos: ",str(lenguaje))
+	palabra=[]
+	num=1
+	nump=int(input("Cuantos elementos tendra el lenguaje: "))
+	lon=int(input("Longitud de los elementos del lenguaje: "))
+	while num<=nump:
+		for lon1 in range(0,lon):
+			palabra.append(random.choice(alfabeto))
+			aux="".join(palabra)
+		if aux not in lenguaje:
+			lenguaje.append(aux)
+			num+=1
+		palabra.clear()
+	print("El lenguaje contiene los siguientes elementos: ",str(lenguaje))
 def union_len(leng1,leng2):
 	aux=leng1+leng2
 	resultado=[]
@@ -76,6 +79,45 @@ def restalen(len1,len2):
 			resta2.append(palabra)
 	print("Ld1 es: ",str(resta))
 	print("Ld2 es: ",str(resta2))
+def elevarlen(n,lenguaje,base):
+	if n<0:
+		lenguaje=lenguaje[::-1]
+		n=n*-1
+	if n==0:
+		print("")
+		return
+	if n>1:
+		for palabra in lenguaje:
+			elevarlen((n-1),lenguaje,palabra,end=",")
+	else:
+		for palabra in lenguaje:
+			print(base+str(palabra),end=",")
+
+def eleselec():
+	print("""\n\t---Elevando lenguaje---
+\t   Menú
+\t1.- Primer lenguaje
+\t2.- Segundo lenguaje""")
+	while True:
+		numero=(input("Seleccion: "))
+		try:
+			numero=int(numero)
+			if numero==1 or numero==2:
+				break
+		except ValueError:
+			print("No ha seleccionado ningún lenguaje")
+	while True:
+		potencia = input("Ingresar el valor de la potencia: ")
+		try:
+			potencia=int(potencia)
+			if potencia>=-5 and potencia<=5:
+				break
+		except ValueError:
+			print("Entrada incorrecta")
+	if(numero==1):
+			elevarlen(potencia,lenguaje1,"")
+	if(numero==2):
+			elevarlen(potencia,lenguaje2,"")
 
 #a
 alf(alfabeto)
@@ -93,3 +135,10 @@ concalen(lenguaje1,lenguaje2)
 #e
 print("\n\t---Diferencia de lenguajes---")
 restalen(lenguaje1,lenguaje2)
+#f
+eleselec()
+print("\n")
+eleselec()
+
+
+

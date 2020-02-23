@@ -143,10 +143,11 @@ public class Ventana extends JFrame implements ActionListener {
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Se insertaron los datos", "Verificacion",
                         JOptionPane.WARNING_MESSAGE, insertar);
-                tUsuario.setText("");
-                tCorreo.setText("");
-                tPass.setText("");
-                tCurp.setText("");
+                Registros vista=new Registros();
+                vista.setLocationRelativeTo(null);
+                vista.setResizable(false); 
+                vista.setVisible(true);
+                dispose();
             } catch (SQLException s) {
                 JOptionPane.showMessageDialog(null, "Hubo un error " + s, "",
                         JOptionPane.WARNING_MESSAGE, error);

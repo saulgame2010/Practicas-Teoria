@@ -149,6 +149,18 @@ def curp_ale():
 	print("Curp de hombre: ",str(curph.upper()))
 	print("Curp de mujer: ",str(curpm.upper()))
 	print(str(auxaño))
+
+def java_key_words(palabra):
+	regexJava = re.compile('(\\W|^)(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|'+
+		'do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|'+
+		'native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|'+
+		'throws|transient|try|void|volatile|while|String)(\\W|$)')
+	aceptada = regexJava.findall(palabra)
+	if aceptada:
+		return True
+	else:
+		return False
+
 #a
 alf(alfabeto)
 #b
@@ -181,5 +193,15 @@ while validar!=2:
 	
 print("\nGenerando 2 curp aleatorias: ")
 curp_ale()
-
-
+#h
+print("\nIngresa una cadena que contenga los identificadores de palabras reservadas de Java")
+palabra = input()
+x = True
+while x:
+	if java_key_words(palabra):
+		print("Cadena aceptada")
+		x = False
+	else:
+		print("Cadena no aceptada")
+		palabra = input("Ingresa de nuevo tu cadena\n")
+		java_key_words(palabra)

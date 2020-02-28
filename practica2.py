@@ -148,18 +148,25 @@ def curp_ale():
 	curpm=apm[0]+regexVocal.findall(apm)[0]+amm[0]+nomm[0]+random.choice(auxaño)[::-1][0:2][::-1] +random.choice(mes) +random.choice(dia)+"M"+random.choice(estados)+conapm+conamm+connomm+random.choice(digitos)+random.choice(digitos)
 	print("Curp de hombre: ",str(curph.upper()))
 	print("Curp de mujer: ",str(curpm.upper()))
-	print(str(auxaño))
 
 def java_key_words(palabra):
-	regexJava = re.compile('(\\W|^)(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|'+
-		'do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|'+
+	regexId = re.compile('^[_$a-zA-ZñÑ][a-zA-ZñÑ]*')
+	regexJava = re.compile('(^|\\W)(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|'+
+		'do|double|else|enum|extends|exception|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|'+
 		'native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|'+
-		'throws|transient|try|void|volatile|while|String)(\\W|$)')
-	aceptada = regexJava.findall(palabra)
-	if aceptada:
-		return True
-	else:
+		'throws|transient|try|void|volatile|while|String|override)(\\W|$)')
+		
+	aceptada = regexId.search(palabra)
+	javaw = regexJava.search(palabra)
+	print(aceptada)
+	print(javaw)
+	
+	if javaw:
 		return False
+	elif javaw == None and aceptada:
+		return True
+
+
 
 #a
 alf(alfabeto)
@@ -200,7 +207,8 @@ x = True
 while x:
 	if java_key_words(palabra):
 		print("Cadena aceptada")
-		x = False
+		palabra = input("De nuevo\n")
+		java_key_words(palabra)
 	else:
 		print("Cadena no aceptada")
 		palabra = input("Ingresa de nuevo tu cadena\n")

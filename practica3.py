@@ -104,6 +104,17 @@ def automata3():
         print("cadena no valida")
         automata3=automata(listEstados)
 
+def vendingMachine():
+    q0 = estado()
+    q1 = estado()
+    q2 = estado()
+    q3 = estado()
+    q4 = estado()
+    q5 = estado()
+    q6 = estado()
+    q7 = estado()
+    q8 = estado()
+
 while True:
     print("""\n\t Menú
     [1]  Numéro real

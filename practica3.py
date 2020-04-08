@@ -105,15 +105,117 @@ def automata3():
         automata3=automata(listEstados)
 
 def vendingMachine():
-    q0 = estado()
-    q1 = estado()
-    q2 = estado()
-    q3 = estado()
-    q4 = estado()
-    q5 = estado()
-    q6 = estado()
-    q7 = estado()
-    q8 = estado()
+    machine = {
+        "state": "q0",
+        "change": 0.00,
+        "sodas": 0
+    }
+    op = True
+    while op:
+        print("Bienvenido, que desea hacer\n1.- Cargar 0.25\n2.- Cargar 0.5\n3.- Cargar 1.0\n4.- Select\n5.- Salir")
+        option = eval(input())
+        if option == 1:
+            if machine["state"] == "q0":
+                machine["state"] = "q1"
+                machine["change"] = 0.25
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q1":
+                machine["state"] = "q2"
+                machine["change"] = 0.5
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q2":
+                machine["state"] = "q3"
+                machine["change"] = 0.75
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q3":
+                machine["state"] = "q4"
+                machine["change"] = 1.00
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q4":
+                machine["state"] = "q5"
+                machine["change"] = 1.25
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            else:
+                print("Ya has depositado el dinero necesario para adquirir una soda\nSelecciona una")
+        elif option == 2:
+            if machine["state"] == "q0":
+                machine["state"] = "q2"
+                machine["change"] = 0.5
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q1":
+                machine["state"] = "q3"
+                machine["change"] = 0.75
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q2":
+                machine["state"] = "q4"
+                machine["change"] = 1.00
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q3":
+                machine["state"] = "q5"
+                machine["change"] = 1.25
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q4":
+                machine["state"] = "q6"
+                machine["change"] = 1.50
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            else:
+                print("Ya has depositado el dinero necesario para adquirir una soda\nSelecciona una")
+        elif option == 3:
+            if machine["state"] == "q0":
+                machine["state"] = "q4"
+                machine["change"] = 1.0
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q1":
+                machine["state"] = "q5"
+                machine["change"] = 1.25
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q2":
+                machine["state"] = "q6"
+                machine["change"] = 1.5
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q3":
+                machine["state"] =  "q7"
+                machine["change"] = 1.75
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q4":
+                machine["state"] = "q8"
+                machine["change"] = 2.00
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            else:
+                print("Ya has depositado el dinero necesario para adquirir una soda\nSelecciona una")
+            #Y ASÍ SUCESIVAMENTE PARA CADA ESTADO DE LA TABLA EN LA COLUMNA 0.25
+        #EN ESTE LADO SE PONEN LOS elif CORRESPONDIENTES A LAS DEMÁS COLUMNAS
+        elif option == 4:
+            #SI PRESIONA UN SELECT, ÚNICAMENTE EXISTEN CAMBIOS A PARTIR DE q5 EN LA TABLA
+            #POR LO QUE SOLAMENTE VAMOS A TOMAR ESOS IFS 
+            if machine["state"] == "q5":
+                machine["state"] = "q0"
+                machine["change"] = 0
+                machine["sodas"] = machine["sodas"] + 1
+                print("Ya tienes " + str(machine["sodas"]) + " sodas, felicidades")
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q6":
+                machine["state"] = "q1"
+                machine["change"] = 0.25
+                machine["sodas"] = machine["sodas"] + 1
+                print("Ya tienes " + str(machine["sodas"]) + " sodas, felicidades")
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q7":
+                machine["state"] = "q2"
+                machine["change"] = 0.5
+                machine["sodas"] = machine["sodas"] + 1
+                print("Ya tienes " + str(machine["sodas"]) + " sodas, felicidades")
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            elif machine["state"] == "q8":
+                machine["state"] = "q3"
+                machine["change"] = 0.75
+                machine["sodas"] = machine["sodas"] + 1
+                print("Ya tienes " + str(machine["sodas"]) + " sodas, felicidades")
+                print("Tu saldo actual es de " + str(machine["change"]) + "\n")
+            else:
+                print("Ya no tienes saldo suficiente para comprar otra soda ):")
+        else:
+            break
 
 while True:
     print("""\n\t Menú
@@ -132,6 +234,9 @@ while True:
     if sel=="3":
         print("\n\tCadena longitud 3 bajo {a,b,c}")
         automata3()
+    if sel == "4":
+        print("\n\tMaquina de vending")
+        vendingMachine()
     if sel=="5":
         break
     if sel<"0" or sel>"5":

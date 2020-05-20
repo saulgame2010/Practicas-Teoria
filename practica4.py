@@ -8,7 +8,7 @@ def equiv(sheet, c):
 	"""AQUÍ RECORRO LA LISTA C QUE CONTIENE A C0 (QUE SERÍA EN ESTE CASO C[0])
 	Y A C1 (QUE SERÍA C[1]"""
 	for i in range(len(c)):
-	"""AQUÍ EMPIEZO A RECORRER LAS LISTAS INTERNAS DE C, ES DECIR C0 Y C1"""		
+	#AQUÍ EMPIEZO A RECORRER LAS LISTAS INTERNAS DE C, ES DECIR C0 Y C1		
 		for j in range(len(c[i])):			
 			"""AQUI ESPECIFICO QUE SI CUALQUIERA DE LAS CLASES DENTRO DE C
 			TIENEN MAS DE UN ELEMENTO, LAS ANALICE, PORQUE LAS QUE TIENEN SOLO 1 YA NO SE
@@ -28,15 +28,15 @@ def equiv(sheet, c):
 					(SE SUPONE)"""
 					if(sheet.cell_value(f, 1) in c[i] and sheet.cell_value(f, 2) in c[i]):							
 						#ESTE PRINT NO LO BORRES O TE DA ERROR DE IDENTACION (NO SÉ POR QUÉ)
-						print("") #el valor ", sheet.cell_value(f, 0), " si esta
-					"""SI NO SE CUMPLE LA CONDICION ANTERIOR, AHORA CHECO QUE EL ESTADO QUE SE ESTÁ ANALIZANDO
-					VAYA A UN ESTADO CON 0 O CON 1, NO CON LOS DOS COMO EN LA CONDICION ANTERIOR
-					POR EJEMPLO, SI A Q0 CON UN 1 SE VA A Q1 PERO CON UN 0 SE VA A Q2, CUMPLE CON ESTA CONDICION
-					PORQUE Q1 SÍ ESTÁ EN C1 PERO Q2 NO LO ESTA, CUANDO PASA ESTO SACO A Q0 DE LA CLASE DONDE ESTÉ
-					Y LO AGREGO A UNA NUEVA"""
+						print("",end="-")#el valor ", sheet.cell_value(f, 0), " si esta
+					#SI NO SE CUMPLE LA CONDICION ANTERIOR, AHORA CHECO QUE EL ESTADO QUE SE ESTÁ ANALIZANDO
+					#VAYA A UN ESTADO CON 0 O CON 1, NO CON LOS DOS COMO EN LA CONDICION ANTERIOR
+					#POR EJEMPLO, SI A Q0 CON UN 1 SE VA A Q1 PERO CON UN 0 SE VA A Q2, CUMPLE CON ESTA CONDICION
+					#PORQUE Q1 SÍ ESTÁ EN C1 PERO Q2 NO LO ESTA, CUANDO PASA ESTO SACO A Q0 DE LA CLASE DONDE ESTÉ
+					#Y LO AGREGO A UNA NUEVA
 					elif((sheet.cell_value(f, 1) in c[i] and sheet.cell_value(f, 2) not in c[i]) or (sheet.cell_value(f, 1) not in c[i] and sheet.cell_value(f, 2) in c[i])):							
 						#LO MISMO DEL ERROR CON ESTE PRINT, NO LO BORRES
-						print("") #el valor ", sheet.cell_value(f, 0), " no esta
+						#el valor ", sheet.cell_value(f, 0), " no esta
 						for a in c[i]:								
 							if(a == sheet.cell_value(f, 0) and sheet.cell_value(f, 0)):
 								c2.append(sheet.cell_value(f, 0))
@@ -66,7 +66,8 @@ c1 = []
 #PERO YO LA DEJE ESTABLECIDA POR COMODIDAD
 #EN GITHUB YA ESTÁ EL ARCHIVO DE PRUEBA, PERO PUEDES HACER MAS PARA PROBAR OTROS AUTOMATAS
 #print("Ingresa la ruta de tu tabla de transición en excel")
-fileP = "C:\\Users\\saulg\\Desktop\\ESCOM\\4° semestre\\Teoría Computacional\\prueba.xlsx" #input()
+#fileP = "C:\\Users\\saulg\\Desktop\\ESCOM\\4° semestre\\Teoría Computacional\\prueba.xlsx" #input()
+fileP="C:\\Users\\UlisesJ.000\\Documents\\GitHub\\Practicas-Teoria\\prueba.xlsx"
 #ESTA LINEA ABRE EL ARCHIVO EXCEL EN PYTHON PARA PODER LEERLO
 openFile = xlrd.open_workbook(fileP)
 #ESTA VARIABLE ES LA MAS IMPORTANTE PORQUE ES LA HOJA DE EXCEL QUE VAMOS A ESTAR TRABAJANDO
@@ -79,9 +80,9 @@ print("Tu tabla de transición es: \n")
 for i in range(sheet.nrows):
 	#CELL_VALUES RECOGE EL VALOR DE LA CELDA (X, Y) DONDE X ES LA FILA & Y ES LA COLUMNA
 	print(sheet.cell_value(i, 0), "   ", sheet.cell_value(i, 1), "   ", sheet.cell_value(i, 2))
-print("Cuantos estados de aceptacion hay?\n")
+print("Cuantos estados de aceptacion hay?: ",end=" ")
 nc0 = int(input())
-print("Indica cuales son\n")
+print("\nIndica cuales son: ")
 #LOS ESTADOS DE ACEPTACION SE GUARDAN EN LA CLASE C0 Y LOS DEMÁS ESTADOS EN C1
 #DE ESO SE ENCARGAN ESTOS DOS FOR
 for s in range(0, nc0):
@@ -91,7 +92,7 @@ for i in range(sheet.nrows):
 		if(sheet.cell_value(i, 0) != ''):
 			c1.append(sheet.cell_value(i, 0))
 #AQUI IMPRIMO LAS CLASES C0 Y C1 PARA VERIFICAR QUE SE GUARDARON BIEN
-print("C0 = ", c0)
+print("\nC0 = ", c0)
 print("C1 = ", c1)
 #AQUI GUARDO LAS LISTAS C0 Y C1 EN C
 c.append(c0)
@@ -106,7 +107,7 @@ EN DOS VUELTAS, PERO ESO NO SIGNIFICA QUE HAYA GENERADO LAS SUFICIENTES"""
 equiv(sheet, c)	
 equiv(sheet, c)
 """EN LAS SIGUIENTES LINEAS IMPRIMO LAS CLASES RESULTANTES"""
-print("Las clases resultantes del automata minimizado son:")
+print("\nLas clases resultantes del automata minimizado son:")
 for i in range(len(c)):
 	if c[i]:
 		print("C",i, "= ", c[i], "\n")

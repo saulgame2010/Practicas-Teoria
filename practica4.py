@@ -52,11 +52,12 @@ def equiv(sheet, c):
 								c3.append(sheet.cell_value(f, 0))
 						for a in c[i]:								
 							if(a == sheet.cell_value(f, 0)):
-								c[i].remove(a)
-	#ESTOS DE AQUI SOLO SON PARA VER QUÉ HAY EN LAS NUEVAS CLASES
-	#print(c2)
-	#print(c3)
-	#print(c)
+								c[i].remove(a)	#ESTOS DE AQUI SOLO SON PARA VER QUÉ HAY EN LAS NUEVAS CLASES
+	print("listas")
+	print(c2)
+	print(c3)
+	print(c)
+
 
 #AQUI HAGO UNA LISTA C QUE VA A GUARDAR A LAS CLASES C0 Y C1 QUE TAMBIEN SON LISTAS
 c = []
@@ -67,7 +68,7 @@ c1 = []
 #EN GITHUB YA ESTÁ EL ARCHIVO DE PRUEBA, PERO PUEDES HACER MAS PARA PROBAR OTROS AUTOMATAS
 #print("Ingresa la ruta de tu tabla de transición en excel")
 #fileP = "C:\\Users\\saulg\\Desktop\\ESCOM\\4° semestre\\Teoría Computacional\\prueba.xlsx" #input()
-fileP="C:\\Users\\UlisesJ.000\\Documents\\GitHub\\Practicas-Teoria\\prueba.xlsx"
+fileP="C:\\Users\\UlisesJ.000\\Documents\\GitHub\\Practicas-Teoria\\minimizacion1.xlsx"
 #ESTA LINEA ABRE EL ARCHIVO EXCEL EN PYTHON PARA PODER LEERLO
 openFile = xlrd.open_workbook(fileP)
 #ESTA VARIABLE ES LA MAS IMPORTANTE PORQUE ES LA HOJA DE EXCEL QUE VAMOS A ESTAR TRABAJANDO
@@ -105,7 +106,7 @@ AQUI RECOMIENDO QUE YA SEPAS BIEN QUE ONDA CON LA MINIMIZACIÓN DE LOS AFD, POR 
 CUANDO HACER QUE PARE, LA MANDO A LLAMAR DOS VECES PARA QUE HAGA SU TRABAJO DOS VECES Y GENERE LAS CLASES
 EN DOS VUELTAS, PERO ESO NO SIGNIFICA QUE HAYA GENERADO LAS SUFICIENTES"""
 equiv(sheet, c)	
-equiv(sheet, c)
+equiv(sheet,c)
 """EN LAS SIGUIENTES LINEAS IMPRIMO LAS CLASES RESULTANTES"""
 print("\nLas clases resultantes del automata minimizado son:")
 for i in range(len(c)):

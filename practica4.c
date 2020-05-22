@@ -7,6 +7,7 @@
 int n_simbolos; 
 int n_afd_estados; 
 char *afd_final;   
+char aceptados;
 int afdtab[estados][simbolos];
 
 char nombre_estados[estados][estados+1];   
@@ -37,16 +38,34 @@ void imprimir_tabla_afd(int tab[][simbolos], int nestados, int nsimbolos,  char 
 
 void cargar_tabla()
 {
-
+	printf("Numero de estados del AFD: ");
+	scanf ("%d", &n_afd_estados);
+	n_simbolos=2;
+/*	printf("Ingresa los estados finales: ");
+	fflush(stdin);
+	scanf("%s",&aceptados);*/
+	afd_final ="ABCD";	
+	printf("\nIngresa la tabla de transicion: \n");
+	int x;
+	for(x=0;x<n_afd_estados;x++)
+	{
+		printf("Para 0  afdtab[%d][0]: ",x);
+		fflush( stdin );
+		scanf("%c",&afdtab[x][0]);
+		printf("Para 1  afdtab[%d][1]: ",x);
+		fflush( stdin );
+		scanf("%c",&afdtab[x][1]);	
+	}
+	/*
     afdtab[0][0] = 'B'; afdtab[0][1] = 'C';
     afdtab[1][0] = 'B'; afdtab[1][1] = 'D';
     afdtab[2][0] = 'B'; afdtab[2][1] = 'E';
     afdtab[3][0] = 'B'; afdtab[3][1] = 'E';
     afdtab[4][0] = 'E'; afdtab[4][1] = 'E';
+	n_afd_estados=5;
+	n_simbolos=2;
+	afd_final="ABCD";*/
 
-    afd_final = "ABCD";
-    n_afd_estados = 5;
-    n_simbolos = 2;
 }
 /*
 Obtener cadena de estado siguiente para cadena de estado actua.
@@ -162,16 +181,16 @@ void ordenar(char stnt[][estados+1], int n)
 /*
     Divide la primera clase equivalente en subclases.
     Algoritmo:
-        - stnt [i1] se divide en 2 o más clases 's1 / s2 / ...'
+        - stnt [i1] se divide en 2 o mÃ¡s clases 's1 / s2 / ...'
         - antiguo equiv. las clases NO se cambian, excepto stnt [i1]
         - stnt [i1] = s1, stnt [n] = s2, stnt [n + 1] = s3, ...
-    Valor de retorno: número de NUEVO equiv. clases en 'stnt'.
+    Valor de retorno: nÃºmero de NUEVO equiv. clases en 'stnt'.
 */
 int division_clase_equiv(char stnt[][estados+1],
     int i1, /* indice de  'i1'-th clase equiv */
     int i2, /* indice del vectorequivalente para 'i1'-th class */
     int n,  /* numero de entradas en 'stnt' */
-    int n_afd)  /* número de entradas afd de origen */
+    int n_afd)  /* nÃºmero de entradas afd de origen */
 {
     char *anterior=stnt[i1], *vec=stnt[i2];
     int i, n2, flag=0;

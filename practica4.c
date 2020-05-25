@@ -41,10 +41,10 @@ void cargar_tabla()
 	printf("Numero de estados del AFD: ");
 	scanf ("%d", &n_afd_estados);
 	n_simbolos=2;
-/*	printf("Ingresa los estados finales: ");
+	printf("Ingresa los estados finales: ");
 	fflush(stdin);
-	scanf("%s",&aceptados);*/
-	afd_final ="ABCD";	
+	scanf("%s",&aceptados);
+	afd_final = &aceptados;	
 	printf("\nIngresa la tabla de transicion: \n");
 	int x;
 	for(x=0;x<n_afd_estados;x++)

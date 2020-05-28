@@ -24,7 +24,7 @@ char nombre_estados[estados][estados+1];
 int n_optafd_estados;    
 int Optafd[estados][simbolos];
 char nuevo_final[estados+1];
-
+//Este método dibuja el cuadro inicial en donde se pide el número de estados
 void figurita(){
 	gotoxy(25,2);printf("+----------------------------------------------+");
 	gotoxy(25,4);printf("|----------------------------------------------|");
@@ -53,7 +53,8 @@ void imprimir_tabla_afd(int tab[][simbolos], int nestados, int nsimbolos,  char 
     }
     printf("Estados de aceptacion = %s\n", final);
 }
-
+/*Este método imprime la tabla de transición de forma parcial para que el usuario la complete
+de acuerdo a las entradas que desee introducir*/
 void cargar_tabla()
 {
 	figurita();
@@ -70,6 +71,9 @@ void cargar_tabla()
     for (i = 0; i < n_afd_estados; i++) {
         gotoxy(28,13+i);printf("  %c  | ", 'A'+i); 
     }
+    /*En este ciclo for es donde el usuario empieza a rellenar la tabla con las transiciones
+    entre estados una vez que la tabla de transiciones ya ha sido parcialmente dibujada por el 
+    bloque de código anterior*/
     for(x=0;x<n_afd_estados;x++)
 	{
 		fflush( stdin );
@@ -79,12 +83,13 @@ void cargar_tabla()
 	}
     printf("\n\t\t\t  Ingresa los estados de aceptacion: ");
 	fflush(stdin);
+    /*Aquí se obtienen los estados de aceptación*/
 	scanf("%s",&aceptados);
 	edos_aceptacion =&aceptados;	
 
 }
 /*
-Obtener cadena de estado siguiente para cadena de estado actua.
+Este método obtiene la cadena del estado siguiente para la cadena del estado actual.
 */
 void obtener_estado_sig(char *sig_estados, char *estado_actual,int afd[estados][simbolos], int simbolo)
 {
@@ -95,7 +100,7 @@ void obtener_estado_sig(char *sig_estados, char *estado_actual,int afd[estados][
 }
 
 /*
-    Obtener el indice de los estados de equivalencia para el estado 'ch'.
+    Este método obtiene el indice de los estados de equivalencia para el estado 'ch'.
     Los identificadores de clase son '0', '1', '2'
 */
 char indice_de_clase_equiv(char ch, char edo[][estados+1], int n)
@@ -107,7 +112,7 @@ char indice_de_clase_equiv(char ch, char edo[][estados+1], int n)
 }
 
 /*
-    Comprobar si todos los siguientes estados pertenecen a la misma clase de equivalencia.
+    En este método se comprueba si todos los siguientes estados pertenecen a la misma clase de equivalencia.
     Valor de retorno:
         Si el siguiente estado no es unico, devuelve 0.
         Si el siguiente estado es unico, regrese el siguiente estado -> 'A / B / C / ...'
@@ -141,7 +146,7 @@ int indice_estado(char *state, char edo[][estados+1], int n, int *pn,int cur)
         return (*pn)++;
     }
 }
-/* Dividir los estados del afd en final y no final.*/
+/* Este método divide los estados del afd en final y no final.*/
 int clase_init_equiv(char nombre_edo[][estados+1], int n, char *final)
 {
     int i, j;
@@ -174,7 +179,7 @@ int obtener_afd_optimizado(char edo[][estados+1], int n,
     return n2;
 }
 /*
-    char 'ch' se agrega al final de 's'.
+    char 'ch' se agrega al final de 's'. Se agrega el caracter nulo \0 para que C lo reconozca como una cadena
 */
 void agregar_ch(char *s, char ch)
 {

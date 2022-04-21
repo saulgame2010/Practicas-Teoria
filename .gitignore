@@ -1,5 +1,12 @@
-/Expresiones_regulares/nbproject/private/
-/Expresiones_regulares/build/
-/Expresiones_regulares/dist/
-minimizacion2.xlsx
-~$minimizacion2.xlsx
+*.pptx
+*.docx
+*.rar
+*.pdf
+*.doc
+*.xlsx
+*.exe
+*.png
+*.gif
+*.jpg
+*.mkv
+*.mp4
